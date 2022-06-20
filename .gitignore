@@ -1,3 +1,7 @@
 .idea/
 run.py
 run.exe
+*.spec
+build/
+dist/
+main.exe

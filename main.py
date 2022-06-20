@@ -16,12 +16,6 @@ uuid = args[3]
 registerEvent = args[5]
 info = args[7]
 
-print("start")
-print(port)
-print(uuid)
-print(registerEvent)
-print(info)
-
 rs = None
 ready = False
 loop = asyncio.new_event_loop()
