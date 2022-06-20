@@ -13,7 +13,7 @@
      7. Move the `main.exe` file from the `dist` folder to the root folder (`com.t1ps.rustplus.sdPlugin`)
      8. Delete the `dist` and `build` folders.
    * Automatic **Only works for StreamDeck installs at default location**:
-     1. Run: `mkdir %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin && cd %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin && curl https://raw.githubusercontent.com/quintindunn/rust-plus-streamdeck/main/main.py >> main.py && curl https://github.com/quintindunn/rust-plus-streamdeck/blob/main/images.py >> images.py && curl https://github.com/quintindunn/rust-plus-streamdeck/blob/main/manifest.json >> manifest.json && pyinstaller --onefile main.py && move %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin\dist\main.exe %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin\main.exe && rd /s /q dist && rd /s /q build`
+     1. Run: `mkdir %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin && cd %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin && curl https://raw.githubusercontent.com/quintindunn/rust-plus-streamdeck/main/main.py >> main.py && curl https://raw.githubusercontent.com/quintindunn/rust-plus-streamdeck/main/images.py >> images.py && curl https://raw.githubusercontent.com/quintindunn/rust-plus-streamdeck/main/manifest.json >> manifest.json && pyinstaller --onefile main.py && move %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin\dist\main.exe %appdata%\Elgato\StreamDeck\Plugins\com.t1ps.rustplus.sdPlugin\main.exe && rd /s /q dist && rd /s /q build`
 4. Fully close the `StreamDeck` program using `taskkill /f /im streamdeck.exe`
 5. Relaunch the StreamDeck program.
 
