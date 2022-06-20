@@ -1,6 +1,10 @@
 ## Download/Install:
 1. Install [python3.10+](https://www.python.org/downloads/)
-2. Install pyinstaller `py -m pip install pyinstaller` (or) `python -m pip install pyinstaller`
+### **Execute the following in command prompt**
+3. Install pyinstaller `py -m pip install pyinstaller` (or) `python -m pip install pyinstaller`
+4. Install rustplus `py -m pip install rustplus` (or) `python -m pip install rustplus`
+5. Install websocket-client `py -m pip install websocket-client` (or) `python -m pip install websocket-client`
+6. Install rel `py -m pip install rel` (or) `python -m pip rel`
 
 3. Download and install:
    * Manual:
