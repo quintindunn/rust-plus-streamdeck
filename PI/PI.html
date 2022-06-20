@@ -1,0 +1,133 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Property Inspector</title>
+    <link rel="stylesheet" href="sdpi.css">
+    <script>
+        var websocket;
+        var actionInfo;
+        var uuid;
+        var settings = {};
+        function connectElgatoStreamDeckSocket(inPort, inPropertyInspectorUUID, inRegisterEvent, inInfo, inActionInfo) {
+            uuid = inPropertyInspectorUUID;
+            websocket = new WebSocket("ws://localhost:" + inPort);
+            actionInfo = inActionInfo;
+            websocket.onopen = function()
+            {
+             // WebSocket is connected, register the Property Inspector
+             var json = {
+              "event": inRegisterEvent,
+              "uuid": inPropertyInspectorUUID
+             };
+
+             websocket.send(JSON.stringify(json));
+
+             json = {
+                 "event": "getSettings",
+                 "context": uuid
+             }
+             websocket.send(JSON.stringify(json));
+
+            };
+
+            websocket.onmessage = function (msg)
+            {
+                let data = JSON.parse(msg.data);
+            };
+
+        setInterval(() => {
+            console.log(JSON.parse(inActionInfo)['context']);
+
+        }, 1000);
+        }
+
+
+        function updateS64(self) {
+            let s64 = document.getElementById("s64").value;
+            let json = {
+                "action": "com.t1ps.rustplus.sdplugin",
+                "event": "sendToPlugin",
+                "context": uuid,
+                "payload": {"s64": s64}
+            };
+            websocket.send(JSON.stringify(json));
+        }
+        function updatePlayerToken() {
+            let player_token = document.getElementById("playerToken").value;
+            let json = {
+                "action": "com.t1ps.rustplus.sdplugin",
+                "event": "sendToPlugin",
+                "context": uuid,
+                "payload": {"playerToken": player_token}
+            };
+
+            websocket.send(JSON.stringify(json));
+        }
+        function updateServerIP() {
+            let ip_value = document.getElementById("serverIP").value;
+            let json = {
+                "action": "com.t1ps.rustplus.sdplugin",
+                "event": "sendToPlugin",
+                "context": uuid,
+                "payload": {"ServerIP": ip_value}
+            };
+
+            websocket.send(JSON.stringify(json));
+        }
+        function updateServerPort() {
+            let port_value = document.getElementById("port").value;
+            let json = {
+                "action": "com.t1ps.rustplus.sdplugin",
+                "event": "sendToPlugin",
+                "context": uuid,
+                "payload": {"Port": port_value}
+            };
+
+            websocket.send(JSON.stringify(json));
+        }
+        function updateEntityID() {
+            let eid_value = document.getElementById("eid").value;
+            let json = {
+                "action": "com.t1ps.rustplus.sdplugin",
+                "event": "sendToPlugin",
+                "context": uuid,
+                "payload": {"eid": eid_value}
+            };
+
+            websocket.send(JSON.stringify(json));
+        }
+
+        function update() {
+            updateServerIP();
+            updateS64();
+            updatePlayerToken();
+            updateEntityID();
+            updateServerPort();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="sdpi-wrapper">
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Steam64</div>
+            <input class="sdpi-item-value" id="s64" value="" placeholder="steam64" onchange="update()">
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Player Token</div>
+            <input class="sdpi-item-value" id="playerToken" value="" placeholder="Player Token" onchange="update()">
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Server IP</div>
+            <input class="sdpi-item-value" id="serverIP" value="" placeholder="Server IP" onchange="update()">
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Port</div>
+            <input class="sdpi-item-value" id="port" value="" placeholder="Port" onchange="update()">
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Entity ID</div>
+            <input class="sdpi-item-value" id="eid" value="" placeholder="Entity ID" onchange="update()">
+        </div>
+    </div>
+</body>
